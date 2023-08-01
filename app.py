@@ -5,7 +5,8 @@ import glob
 def main():
     scr_dir = os.environ['SRC_DIR']
     # tgt_dir = os.environ['TGT_DIR']
-    src_file_name = glob.glob(f'{scr_dir}/NYSE_*.txt.gz')
+    src_file_pattern = os.environ.setdefault('SET_FILE_PATTERN','NYSE_*.txt.gz')
+    src_file_name = glob.glob(f'{scr_dir}/{src_file_pattern}')
     tgt_file_names=[file.replace('txt','json').replace('nyse_data','nyse_json') for file in src_file_name]
     print('file format conversion is started')
     df= dd.read_csv(src_file_name,
