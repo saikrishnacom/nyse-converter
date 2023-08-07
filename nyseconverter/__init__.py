@@ -5,13 +5,15 @@ import logging
 
 
 def main():
+    log_file_path = os.environ['LOG_FILE_PATH']
+    scr_dir = os.environ['SRC_DIR']
     logging.basicConfig(
-        filename='logs/nc.log',
+        filename=log_file_path,
         level=logging.INFO,
         format='%(levelname)s %(asctime)s %(message)s',
         datefmt='%Y-%m-%d %I:%M-%S %p'
     )
-    scr_dir = os.environ['SRC_DIR']
+   
     # tgt_dir = os.environ['TGT_DIR']
     src_file_pattern = os.environ.setdefault('SET_FILE_PATTERN','NYSE*.txt.gz')
     src_file_name = glob.glob(f'{scr_dir}/{src_file_pattern}')
